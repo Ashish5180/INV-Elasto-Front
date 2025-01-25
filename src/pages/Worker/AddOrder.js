@@ -40,7 +40,7 @@ function AddOrder() {
   // Fetch formulas from the backend
   const fetchFormulas = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/formulas");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/formulas");
       setFormulas(response.data);
     } catch (error) {
       console.error("Error fetching formulas:", error);
@@ -50,7 +50,7 @@ function AddOrder() {
   // Fetch ingredients from the backend
   const fetchIngredients = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/items");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/items");
       const rubber = response.data.filter((item) => item.category === "rubber");
       const chemicals = response.data.filter(
         (item) => item.category === "chemical"
@@ -194,7 +194,7 @@ function AddOrder() {
         remarks,
       };
 
-      const response = await axios.post("http://localhost:5001/api/orders", orderData);
+      const response = await axios.post("https://inv-elasto-back-production.up.railway.app/api/orders", orderData);
       alert("Order added successfully!");
       console.log(response.data);
       resetForm();

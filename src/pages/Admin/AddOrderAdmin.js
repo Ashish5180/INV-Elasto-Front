@@ -42,7 +42,7 @@ Please process this order as per the given details.`;
 useEffect(() => {
   const fetchOrders = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/orders");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/orders");
       if (!response.ok) {
         throw new Error("Failed to fetch orders");
       }
@@ -75,7 +75,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchFormulas = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/formulas");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/formulas");
       // Check if response data exists and is in the expected format
       if (response.data && Array.isArray(response.data)) {
         setFormulas(response.data); // Store formulas in state
@@ -137,7 +137,7 @@ const getFormulaNameById = (formulaId) => {
 useEffect(() => {
   const fetchArticles = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/products");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/products");
       setArticles(response.data); // Store the API response in state
       setFilteredArticles(response.data); // Initialize filtered articles
     } catch (error) {
@@ -228,7 +228,7 @@ const handleArticleSelect = (selectedId) => {
       };
 
       const response = await axios.post(
-        "http://localhost:5001/api/orders",
+        "https://inv-elasto-back-production.up.railway.app/api/orders",
         orderData
       );
       alert("Order added successfully!");

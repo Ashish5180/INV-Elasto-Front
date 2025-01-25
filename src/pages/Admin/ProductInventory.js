@@ -25,7 +25,7 @@ const ProductInventory = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5001/api/products");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/products");
       const data = await response.json();
       setProducts(data);
       setFilteredProducts(data);  // Set initial filtered products to all products
@@ -41,10 +41,10 @@ const ProductInventory = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5001/api/products/${productId}/logs`
+        `https://inv-elasto-back-production.up.railway.app/api/products/${productId}/logs`
       );
       const proddata = await fetch(
-        `http://localhost:5001/api/products/${productId}`
+        `https://inv-elasto-back-production.up.railway.app/api/products/${productId}`
       );
       const pdata = await proddata.json();
       const data = await response.json();
@@ -103,11 +103,11 @@ const ProductInventory = () => {
 
     try {
       const proddata = await fetch(
-        `http://localhost:5001/api/products/${selectedProductId}`
+        `https://inv-elasto-back-production.up.railway.app/api/products/${selectedProductId}`
       );
       const pdata = await proddata.json();
       const productResponse = await fetch(
-        `http://localhost:5001/api/products/${selectedProductId}/log`,
+        `https://inv-elasto-back-production.up.railway.app/api/products/${selectedProductId}/log`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ const ProductInventory = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:5001/api/formulas/${formulaId}/logformulafromproduct`,
+            `https://inv-elasto-back-production.up.railway.app/api/formulas/${formulaId}/logformulafromproduct`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

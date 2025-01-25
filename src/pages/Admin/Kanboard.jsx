@@ -16,7 +16,7 @@ function CustomKanban() {
   // Fetch notes from API
   const fetchNotes = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/notes');
+      const response = await fetch('https://inv-elasto-back-production.up.railway.app/api/notes');
       const data = await response.json();
       setNotes(data);
     } catch (error) {
@@ -29,7 +29,7 @@ function CustomKanban() {
     if (noteContent.trim()) {
       const newNote = { content: noteContent };
       try {
-        const response = await fetch('http://localhost:5001/api/notes', {
+        const response = await fetch('https://inv-elasto-back-production.up.railway.app/api/notes', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newNote),
@@ -46,7 +46,7 @@ function CustomKanban() {
   // Delete note (sending to backend)
   const deleteNote = async (id) => {
     try {
-      await fetch(`http://localhost:5001/api/notes/${id}`, { method: 'DELETE' });
+      await fetch(`https://inv-elasto-back-production.up.railway.app/api/notes/${id}`, { method: 'DELETE' });
       setNotes(notes.filter((note) => note._id !== id)); // Using _id from MongoDB
     } catch (error) {
       console.error('Error deleting note:', error);
@@ -57,7 +57,7 @@ function CustomKanban() {
   const updateNote = async () => {
     if (newContent.trim()) {
       try {
-        const response = await fetch(`http://localhost:5001/api/notes/${editNote._id}`, {
+        const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/notes/${editNote._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ content: newContent }),

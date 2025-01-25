@@ -24,7 +24,7 @@ const InventoryLogging = () => {
   const fetchMaterials = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5001/api/items");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/items");
       const data = await response.json();
       setMaterials(data);
       setLoading(false);
@@ -39,7 +39,7 @@ const InventoryLogging = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5001/api/items/${materialId}`
+        `https://inv-elasto-back-production.up.railway.app/api/items/${materialId}`
       );
       const data = await response.json();
       setLogs(data.logs || []); // Ensure logs are never undefined
@@ -79,7 +79,7 @@ const InventoryLogging = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/items/${selectedMaterialId}/log`,
+        `https://inv-elasto-back-production.up.railway.app/api/items/${selectedMaterialId}/log`,
         {
           method: "POST", // Use POST to add a new log entry
           headers: { "Content-Type": "application/json" },

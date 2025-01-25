@@ -19,7 +19,7 @@ const FormulaBin = () => {
 
   const fetchFormulas = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/formulas");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/formulas");
       setFormulas(response.data);
     } catch (error) {
       console.error("Error fetching formulas:", error);
@@ -28,7 +28,7 @@ const FormulaBin = () => {
 
   const fetchIngredients = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/items");
+      const response = await axios.get("https://inv-elasto-back-production.up.railway.app/api/items");
       const rubber = response.data.filter((item) => item.category === "rubber");
       const chemicals = response.data.filter(
         (item) => item.category === "chemical"
@@ -97,13 +97,13 @@ const FormulaBin = () => {
       if (editingId) {
         // Update existing formula
         await axios.put(
-          `http://localhost:5001/api/formulas/${editingId}`,
+          `https://inv-elasto-back-production.up.railway.app/api/formulas/${editingId}`,
           newFormula
         );
         console.log("Formula updated successfully!");
       } else {
         // Add new formula
-        await axios.post("http://localhost:5001/api/formulas", newFormula);
+        await axios.post("https://inv-elasto-back-production.up.railway.app/api/formulas", newFormula);
         console.log("Formula saved successfully!");
       }
 
@@ -120,7 +120,7 @@ const FormulaBin = () => {
 
   const deleteFormula = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/formulas/${id}`);
+      await axios.delete(`https://inv-elasto-back-production.up.railway.app/api/formulas/${id}`);
       fetchFormulas();
     } catch (error) {
       console.error("Error deleting formula:", error);

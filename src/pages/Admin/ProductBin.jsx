@@ -108,7 +108,7 @@ const ProductBin = () => {
 
   const fetchFormulas = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/formulas");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/formulas");
       const data = await response.json();
       setFormulas(data);
     } catch (error) {
@@ -118,7 +118,7 @@ const ProductBin = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/products");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/products");
       const productsData = await response.json();
       
       const formulaIds = productsData.flatMap(product =>
@@ -128,7 +128,7 @@ const ProductBin = () => {
       const uniqueFormulaIds = [...new Set(formulaIds)];
   
       const formulaResponse = await fetch(
-        `http://localhost:5001/api/formulas?ids=${uniqueFormulaIds.join(",")}`
+        `https://inv-elasto-back-production.up.railway.app/api/formulas?ids=${uniqueFormulaIds.join(",")}`
       );
       const formulasData = await formulaResponse.json();
   
@@ -205,7 +205,7 @@ const ProductBin = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/api/products", {
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -25,7 +25,7 @@ const FormulaInventory = () => {
   // Fetch formula bin data
   const fetchFormulaBin = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/formulas"); // Fetch formulas
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/formulas"); // Fetch formulas
       const data = await response.json();
       setFormulaBin(data);
     } catch (error) {
@@ -37,7 +37,7 @@ const FormulaInventory = () => {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5001/api/items");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/items");
       const data = await response.json();
       const rubber = data.filter((item) => item.category === "rubber");
       const chemical = data.filter((item) => item.category === "chemical");
@@ -55,7 +55,7 @@ const FormulaInventory = () => {
   
   const fetchLogs = async (formulaName) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/formulas/logs/${formulaName}`);
+      const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/formulas/logs/${formulaName}`);
       
       // Check if the response is okay
       if (!response.ok) {
@@ -127,7 +127,7 @@ const FormulaInventory = () => {
     try {
       // Step 3: Send the log entry for the formula usage to the backend
       const response = await fetch(
-        `http://localhost:5001/api/formulas/${selectedFormula._id}/log`,
+        `https://inv-elasto-back-production.up.railway.app/api/formulas/${selectedFormula._id}/log`,
         {
           method: "POST",
           headers: {
@@ -162,7 +162,7 @@ const FormulaInventory = () => {
   
         //   // Send the transaction log for the ingredient usage
         //   const logResponse = await fetch(
-        //     `http://localhost:5001/api/items/${ingredient.name}/log`,
+        //     `https://inv-elasto-back-production.up.railway.app/api/items/${ingredient.name}/log`,
         //     {
         //       method: "POST",
         //       headers: {

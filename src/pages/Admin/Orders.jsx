@@ -44,7 +44,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/orders");
+        const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/orders");
         if (!response.ok) {
           throw new Error("Failed to fetch orders");
         }
@@ -68,7 +68,7 @@ const Orders = () => {
         return;
       }
   
-      const response = await fetch(`http://localhost:5001/api/orders/${id}`, {
+      const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const Orders = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5001/api/orders/${id}`, {
+      const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -138,7 +138,7 @@ const Orders = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5001/api/orders/${id}`, {
+      const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

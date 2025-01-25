@@ -19,7 +19,7 @@ const Inventory = () => {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5001/api/items");
+      const response = await fetch("https://inv-elasto-back-production.up.railway.app/api/items");
       const data = await response.json();
       const rubber = data.filter((item) => item.category === "rubber");
       const chemical = data.filter((item) => item.category === "chemical");
@@ -67,7 +67,7 @@ const Inventory = () => {
       const updates = [...rubberIngredients, ...chemicals];
       await Promise.all(
         updates.map((item) =>
-          fetch(`http://localhost:5001/api/items/${item.name}`, {
+          fetch(`https://inv-elasto-back-production.up.railway.app/api/items/${item.name}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(item),
@@ -82,7 +82,7 @@ const Inventory = () => {
   const handleAddNewItem = async () => {
     const newInventoryItem = { ...newItem, category: selectedCategory };
     try {
-      await fetch("http://localhost:5001/api/items", {
+      await fetch("https://inv-elasto-back-production.up.railway.app/api/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newInventoryItem),
@@ -96,7 +96,7 @@ const Inventory = () => {
 
   const handleDeleteItem = async (name) => {
     try {
-      await fetch(`http://localhost:5001/api/items/${name}`, {
+      await fetch(`https://inv-elasto-back-production.up.railway.app/api/items/${name}`, {
         method: "DELETE",
       });
       await fetchItems(); // Refresh data after deletion
