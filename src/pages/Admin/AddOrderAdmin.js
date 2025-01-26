@@ -155,8 +155,25 @@ const generateOrderID = () => {
     date.getMonth() + 1
   ).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
 
-  return `OD${dateString}-${String(orderCount+1).padStart(2, "0")}`;
+  // Get the stored date and order count from localStorage
+  const storedDate = localStorage.getItem('orderDate');
+  let orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10);
+
+  // If the stored date is different from today, reset order count
+  if (storedDate !== dateString) {
+    orderCount = 0; // reset counter for new day
+    localStorage.setItem('orderDate', dateString);
+  }
+
+  // Increment order count for the day
+  orderCount += 1;
+
+  // Store the updated order count
+  localStorage.setItem('orderCount', orderCount.toString());
+
+  return `OD${dateString}-${String(orderCount).padStart(2, "0")}`;
 };
+
 
 
 const handlePrint = () => {
