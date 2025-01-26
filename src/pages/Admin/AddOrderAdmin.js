@@ -52,17 +52,15 @@ useEffect(() => {
       const currentDate = new Date();
       const dateString = `${String(currentDate.getDate()).padStart(2, "0")}${String(currentDate.getMonth() + 1).padStart(2, "0")}${String(currentDate.getFullYear()).slice(-2)}`;
 
-        // Filter orders that match today's date
-        const todayOrders = data.filter(order => order.orderId.startsWith(`OD${dateString}`));
+      // Filter orders that match today's date
+      const todayOrders = data.filter(order => order.orderId.startsWith(`OD${dateString}`));
 
-        // Count orders for today
-        const countForToday = todayOrders.length + 1; // +1 to start from 1 for new day
+      // Count orders for today
+      const countForToday = todayOrders.length + 1; // +1 to start from 1 for new day
 
-        // Set the order count for today
-        setOrderCount(countForToday);
+      // Set the order count for today
+      setOrderCount(countForToday);
 
-      // Set the order count in state
-     // Set the number of orders
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
@@ -150,17 +148,13 @@ useEffect(() => {
 
 // Generate Order ID
 
-const generateOrderID = () => {
-  let orderCount = 1; // Initialize orderCount to 1.
+const generateOrderID = (orderCount) => {
   const date = new Date();
-  
-  // Generate date string in the format: DDMMYY
-  const dateString = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getFullYear()).slice(-2)}`;
-  
-  // Create order ID with a padded order count
-  const orderID = `OD${dateString}-${String(orderCount++).padStart(2, '0')}`;
-  
-  return orderID;
+  const dateString = `${String(date.getDate()).padStart(2, "0")}${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
+
+  return `OD${dateString}-${String(orderCount).padStart(2, "0")}`;
 };
 
 
