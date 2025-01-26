@@ -13,12 +13,12 @@ export default function AdminDashboard() {
         {/* Replace SVG with appropriate image alt tags for SEO */}
         <img 
           className="w-full dark:hidden" 
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg" 
+          src="/images/photo3.jpeg" 
           alt="Admin Dashboard Preview for Light Mode"
         />
         <img 
           className="w-full hidden dark:block" 
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg" 
+          src="/images/photo3.jpeg" 
           alt="Admin Dashboard Preview for Dark Mode"
         />
         <div className="mt-4 md:mt-0">

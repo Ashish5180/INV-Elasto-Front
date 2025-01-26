@@ -21,7 +21,7 @@ const Navbar = ({ user }) => {
       <div className="logo-container">
         {/* Company Logo and Name */}
         <img
-          src="https://elastomech.in/img/elstomatch%20logo.png"
+          src="/images/photo2.jpeg"
           alt="Elastomech Logo"
           className="logo"
         />

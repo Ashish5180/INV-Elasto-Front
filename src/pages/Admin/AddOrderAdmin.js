@@ -149,29 +149,18 @@ useEffect(() => {
 }, []);
 
 // Generate Order ID
+
 const generateOrderID = () => {
+  let orderCount = 1; // Initialize orderCount to 1.
   const date = new Date();
-  const dateString = `${String(date.getDate()).padStart(2, "0")}${String(
-    date.getMonth() + 1
-  ).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
-
-  // Get the stored date and order count from localStorage
-  const storedDate = localStorage.getItem('orderDate');
-  let orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10);
-
-  // If the stored date is different from today, reset order count
-  if (storedDate !== dateString) {
-    orderCount = 0; // reset counter for new day
-    localStorage.setItem('orderDate', dateString);
-  }
-
-  // Increment order count for the day
-  orderCount += 1;
-
-  // Store the updated order count
-  localStorage.setItem('orderCount', orderCount.toString());
-
-  return `OD${dateString}-${String(orderCount).padStart(2, "0")}`;
+  
+  // Generate date string in the format: DDMMYY
+  const dateString = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getFullYear()).slice(-2)}`;
+  
+  // Create order ID with a padded order count
+  const orderID = `OD${dateString}-${String(orderCount++).padStart(2, '0')}`;
+  
+  return orderID;
 };
 
 

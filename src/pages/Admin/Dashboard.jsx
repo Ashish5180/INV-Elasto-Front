@@ -41,7 +41,7 @@ export default function AdminDashboard() {
           </div>
           <div className="hidden lg:block lg:col-span-5">
             <motion.img
-              src="https://elastomech.in/img/company%20image.jpg"
+              src="/images/photo1.jpeg"
               alt="Elastomech Products"
               className="w-full h-auto rounded-xl shadow-xl"
               initial={{ opacity: 0, x: 50 }}
