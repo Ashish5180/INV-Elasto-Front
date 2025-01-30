@@ -526,6 +526,7 @@ const ProductBin = () => {
               <th className="border px-4 py-2 text-left">No. of Labours</th>
               <th className="border px-4 py-2 text-left">Hardness</th>
               <th className="border px-4 py-2 text-left">Last Updated</th>
+              <th className="border px-4 py-2 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
