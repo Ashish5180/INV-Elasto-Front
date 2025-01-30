@@ -209,7 +209,7 @@ const ProductInventory = () => {
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 >
                   <span className="font-semibold">{product.articleName}</span>
-                  <span className="font-semibold">{product.manufacturing}</span>
+                  <span className="font-semibold m-4 text-blue">{product.manufacturing}</span>
                 </button>
               </motion.li>
             ))}
