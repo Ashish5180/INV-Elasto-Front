@@ -227,6 +227,30 @@ const ProductBin = () => {
     }
   };
 
+
+  // Function to handle delete
+  const handleDelete = async (productId) => {
+    // Confirm deletion
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        const response = await fetch(`https://inv-elasto-back-production.up.railway.app/api/products/${productId}`, {
+          method: "DELETE",
+        });
+  
+        if (response.ok) {
+          setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
+          alert("Product deleted successfully!");
+        } else {
+          const errorResponse = await response.json();
+          alert(`Error deleting product: ${errorResponse.error || "Unknown error"}`);
+        }
+      } catch (error) {
+        alert("Error deleting product.");
+      }
+    }
+  };
+  
+
   const resetForm = () => {
     setProductForm({
       articleName: "",
@@ -398,7 +422,7 @@ const ProductBin = () => {
             </div>
 
             <div className="form-group">
-              <label className="block text-lg">Cycle Time (Seconds)</label>
+              <label className="block text-lg">Cycle Time (Minutes)</label>
               <input
                 type="number"
                 name="cycleTime"
@@ -535,6 +559,14 @@ const ProductBin = () => {
                 <td className="border px-4 py-2">{product?.noOfLabours}</td>
                 <td className="border px-4 py-2">{product?.hardness}</td>
                 <td className="border px-4 py-2">{new Date(product.lastUpdated).toLocaleDateString()}</td>
+                <td className="border px-4 py-2">
+        <button
+          onClick={() => handleDelete(product._id)} // Add delete button with functionality
+          className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
+        >
+          Delete
+        </button>
+      </td>
               </tr>
             ))}
           </tbody>
