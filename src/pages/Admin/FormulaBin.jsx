@@ -8,6 +8,8 @@ const FormulaBin = () => {
   const [currentFormulaName, setCurrentFormulaName] = useState("");
   const [currentIngredients, setCurrentIngredients] = useState([]);
   const [lotMultiplier, setLotMultiplier] = useState("");
+  const [hardness, setHardness] = useState("");
+
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [rubberIngredients, setRubberIngredients] = useState([]);
@@ -100,7 +102,9 @@ const FormulaBin = () => {
       name: currentFormulaName,
       lotMultiplier: lotMultiplier, // Add lot number to the formula
       ingredients: currentIngredients,
-      totalWeight: totalWeight, // Add total weight to the formula data
+      totalWeight: totalWeight, 
+      hardness: hardness
+        // Add total weight to the formula data
     };
 
     try {
@@ -143,6 +147,8 @@ const FormulaBin = () => {
     setCurrentFormulaName(formula.name);
     setLotMultiplier(formula.lotMultiplier); // Set lot number for the formula
     setCurrentIngredients(formula.ingredients);
+    setHardness(formula.hardness);
+
     setEditingIndex(index);
     setEditingId(id);
   };
@@ -211,6 +217,19 @@ const FormulaBin = () => {
               value={lotMultiplier}
               onChange={(e) => setLotMultiplier(e.target.value)}
               placeholder="Enter lot multiplier"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </label>
+        </div>
+        
+             <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700">
+            Hardness:
+            <input
+              type="text"
+              value={hardness}
+              onChange={(e) => setHardness(e.target.value)}
+              placeholder="Enter hardness"
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </label>
@@ -339,6 +358,9 @@ const FormulaBin = () => {
               </p>
               <p className="text-sm text-gray-500">
                 Total Weight: {formula.totalWeight} kg
+              </p>
+               <p className="text-sm text-gray-500">
+                Hardness: {formula.hardness}
               </p>
 
               {/* Display Ingredients in a Table */}
