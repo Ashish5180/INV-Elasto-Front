@@ -314,6 +314,39 @@ const ProductInventory = () => {
                     className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
+
+                      <div className="flex flex-col">
+      <label className="text-lg text-gray-700">Inward Quantity</label>
+      <input
+        type="number"
+        value={transaction.inward}
+        onChange={(e) =>
+          setTransaction({
+            ...transaction,
+            inward: parseFloat(e.target.value) || 0,
+          })
+        }
+        required
+        className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div className="flex flex-col">
+      <label className="text-lg text-gray-700">Outward Quantity</label>
+      <input
+        type="number"
+        value={transaction.outward}
+        onChange={(e) =>
+          setTransaction({
+            ...transaction,
+            outward: parseFloat(e.target.value) || 0,
+          })
+        }
+        required
+        className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+                      
                 <div className="flex flex-col">
                   <label className="text-lg text-gray-700">Rejection</label>
                   <input
@@ -454,6 +487,38 @@ const ProductInventory = () => {
                     className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
+
+                       <div className="flex flex-col">
+      <label className="text-lg text-gray-700">Inward Quantity</label>
+      <input
+        type="number"
+        value={transaction.inward}
+        onChange={(e) =>
+          setTransaction({
+            ...transaction,
+            inward: parseFloat(e.target.value) || 0,
+          })
+        }
+        required
+        className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div className="flex flex-col">
+      <label className="text-lg text-gray-700">Outward Quantity</label>
+      <input
+        type="number"
+        value={transaction.outward}
+        onChange={(e) =>
+          setTransaction({
+            ...transaction,
+            outward: parseFloat(e.target.value) || 0,
+          })
+        }
+        required
+        className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
                 <div className="flex flex-col">
                   <label className="text-lg text-gray-700">Rejection qty</label>
                   <input
