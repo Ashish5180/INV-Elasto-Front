@@ -615,7 +615,6 @@ const ProductInventory = () => {
                             <th className="py-3 px-6 text-left">Shift</th>
                             <th className="py-3 px-6 text-left">Worker</th>
                             <th className="py-3 px-6 text-left">Batch No</th>
-                            // <th className="py-3 px-6 text-left">Production</th>
                             <th className="py-3 px-6 text-left">Rejection</th>
                             <th className="py-3 px-6 text-left">Machine No</th>
                             <th className="py-3 px-6 text-left">Supervisor</th>
@@ -637,7 +636,7 @@ const ProductInventory = () => {
                                 <td className="py-4 px-6">{log.shift}</td>
                                 <td className="py-4 px-6">{log.workerName}</td>
                                 <td className="py-4 px-6">{log.batchNumber}</td>
-                                // <td className="py-4 px-6">{log.actualProduction}</td>
+                                
                                 <td className="py-4 px-6">{log.rejection}</td>
                                 <td className="py-4 px-6">{log.machineNo}</td>
                                 <td className="py-4 px-6">{log.supervisedBy}</td>
