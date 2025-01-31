@@ -129,7 +129,8 @@ const ProductInventory = () => {
                     body: JSON.stringify(transaction),
                 }
             );
-
+           console.log(productResponse);
+           console.log(transaction);
             if (!productResponse.ok) {
                 const errorDetails = await productResponse.json();
                 throw new Error(errorDetails.message || "Failed to log product transaction.");
