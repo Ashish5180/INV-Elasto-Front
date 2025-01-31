@@ -600,10 +600,10 @@ const ProductInventory = () => {
                 </div>
             )}
 
-            <div className="logs-section mt-12">
+           <div className="logs-section mt-12 overflow-scroll">
                 <h2 className="text-3xl font-medium text-gray-700 mb-6">Transaction Logs</h2>
                 {logs.length > 0 ? (
-                     <table className="min-w-full bg-white rounded-lg shadow-lg">
+                    <table className="min-w-full bg-white rounded-lg shadow-lg overflow-scroll">
                     <thead>
                         <tr>
                             <th className="py-3 px-6 text-left">Date</th>
@@ -649,6 +649,7 @@ const ProductInventory = () => {
                         ))}
                     </tbody>
                 </table>
+                
                 ) : (
                     <p>No logs available.</p>
                 )}
