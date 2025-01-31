@@ -148,19 +148,7 @@ const ProductInventory = () => {
                     inward: transaction.inward,
                     outward: transaction.outward,
                     particulars: "deducted automatically.",
-                    fillWeight: formulaFillWeight,
-                    remarks: transaction.remarks,
-                    shift:  transaction.shift,
-                    workerName: transaction.workerName,
-                    batchNumber: transaction.batchNumber,
-                    actualProduction: transaction.actualProduction,
-                    rejection: transaction.rejection,
-                    machineNo: transaction.machineNo,
-                    supervisedBy: transaction.supervisedBy,
-                    timeStart: transaction.timeStart,
-                    timeEnd: transaction.timeEnd,
-                    curingTemp: transaction.curingTemp,
-                    reworkScrap: transaction.reworkScrap
+                   
                 };
 
                 try {
