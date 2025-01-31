@@ -252,7 +252,7 @@ const ProductInventory = () => {
               />
             </div>
 
-            {selectedProduct?.manufacturing === "moulding" && (
+            {selectedProduct?.manufacturing === "Moulding" && (
               <>
                 <div className="flex flex-col">
                   <label className="text-lg text-gray-700">Shift</label>
@@ -362,7 +362,7 @@ const ProductInventory = () => {
               </>
             )}
 
-            {selectedProduct?.manufacturing === "extrusion" && (
+            {selectedProduct?.manufacturing === "Extrusion" && (
               <>
                 <div className="flex flex-col">
                   <label className="text-lg text-gray-700">Shift</label>
