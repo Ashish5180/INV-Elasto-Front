@@ -6,12 +6,24 @@ const ProductInventory = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [logs, setLogs] = useState([]);
   const [transaction, setTransaction] = useState({
     particulars: "",
     inward: 0,
     outward: 0,
     remarks: "",
+    shift: "",
+    workerName: "",
+    batchNumber: "",
+    actualProduction: 0,
+    rejection: 0,
+    machineNo: "",
+    supervisedBy: "",
+    timeStart: "",
+    timeEnd: "",
+    curingTemp: "",
+    reworkScrap: 0
   });
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +71,9 @@ const ProductInventory = () => {
   }, []);
 
   const handleProductSelection = (productId) => {
+    const selectedProduct = products.find(product => product._id === productId);
     setSelectedProductId(productId);
+    setSelectedProduct(selectedProduct);
     fetchLogs(productId);
   };
 
@@ -219,9 +233,7 @@ const ProductInventory = () => {
 
       {selectedProductId && (
         <div className="transaction-section mt-12">
-          <h2 className="text-3xl font-medium text-gray-700 mb-6">
-            Log Transaction
-          </h2>
+          <h2 className="text-3xl font-medium text-gray-700 mb-6">Log Transaction</h2>
           <form onSubmit={handleLogTransaction} className="space-y-6">
             <div className="flex flex-col">
               <label className="text-lg text-gray-700">Particulars</label>
@@ -239,52 +251,270 @@ const ProductInventory = () => {
               />
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:space-x-4">
-              <div className="flex flex-col w-full sm:w-1/2">
-                <label className="text-lg text-gray-700">Inward Quantity</label>
-                <input
-                  type="number"
-                  value={transaction.inward}
-                  onChange={(e) =>
-                    setTransaction({
-                      ...transaction,
-                      inward: parseFloat(e.target.value) || 0,
-                    })
-                  }
-                  min="0"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div className="flex flex-col w-full sm:w-1/2">
-                <label className="text-lg text-gray-700">
-                  Outward Quantity
-                </label>
-                <input
-                  type="number"
-                  value={transaction.outward}
-                  onChange={(e) =>
-                    setTransaction({
-                      ...transaction,
-                      outward: parseFloat(e.target.value) || 0,
-                    })
-                  }
-                  min="0"
-                  className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-            </div>
+            {selectedProduct?.manufacturing === "moulding" && (
+              <>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Shift</label>
+                  <input
+                    type="text"
+                    value={transaction.shift}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        shift: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Name of worker(s)</label>
+                  <input
+                    type="text"
+                    value={transaction.workerName}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        workerName: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Batch Number</label>
+                  <input
+                    type="text"
+                    value={transaction.batchNumber}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        batchNumber: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Actual production</label>
+                  <input
+                    type="number"
+                    value={transaction.actualProduction}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        actualProduction: parseFloat(e.target.value) || 0,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Rejection</label>
+                  <input
+                    type="number"
+                    value={transaction.rejection}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        rejection: parseFloat(e.target.value) || 0,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Machine No.</label>
+                  <input
+                    type="text"
+                    value={transaction.machineNo}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        machineNo: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Supervised by</label>
+                  <input
+                    type="text"
+                    value={transaction.supervisedBy}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        supervisedBy: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </>
+            )}
 
-            <div className="flex flex-col">
-              <label className="text-lg text-gray-700">Remarks</label>
-              <input
-                type="text"
-                value={transaction.remarks}
-                onChange={(e) =>
-                  setTransaction({ ...transaction, remarks: e.target.value })
-                }
-                className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            {selectedProduct?.manufacturing === "extrusion" && (
+              <>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Shift</label>
+                  <input
+                    type="text"
+                    value={transaction.shift}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        shift: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Name of worker(s)</label>
+                  <input
+                    type="text"
+                    value={transaction.workerName}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        workerName: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Batch Number</label>
+                  <input
+                    type="text"
+                    value={transaction.batchNumber}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        batchNumber: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Time Start</label>
+                  <input
+                    type="time"
+                    value={transaction.timeStart}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        timeStart: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Time End</label>
+                  <input
+                    type="time"
+                    value={transaction.timeEnd}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        timeEnd: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Curing Temp. & Pressure</label>
+                  <input
+                    type="text"
+                    value={transaction.curingTemp}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        curingTemp: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Rejection qty</label>
+                  <input
+                    type="number"
+                    value={transaction.rejection}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        rejection: parseFloat(e.target.value) || 0,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">REWORK/SCRAP</label>
+                  <input
+                    type="number"
+                    value={transaction.reworkScrap}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        reworkScrap: parseFloat(e.target.value) || 0,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Machine No.</label>
+                  <input
+                    type="text"
+                    value={transaction.machineNo}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        machineNo: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-lg text-gray-700">Supervised by</label>
+                  <input
+                    type="text"
+                    value={transaction.supervisedBy}
+                    onChange={(e) =>
+                      setTransaction({
+                        ...transaction,
+                        supervisedBy: e.target.value,
+                      })
+                    }
+                    required
+                    className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </>
+            )}
 
             <button
               type="submit"
@@ -304,53 +534,31 @@ const ProductInventory = () => {
       )}
 
       <div className="logs-section mt-12">
-        <h2 className="text-3xl font-medium text-gray-700 mb-6">
-          Transaction Logs
-        </h2>
-        <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-          <table className="min-w-full table-auto">
-            <thead className="bg-gray-100 text-gray-600">
+        <h2 className="text-3xl font-medium text-gray-700 mb-6">Transaction Logs</h2>
+        {logs.length > 0 ? (
+          <table className="min-w-full bg-white rounded-lg shadow-lg">
+            <thead>
               <tr>
-                <th className="py-3 px-4 text-left">Date</th>
-                <th className="py-3 px-4 text-left">Particulars</th>
-                <th className="py-3 px-4 text-left">Inward</th>
-                <th className="py-3 px-4 text-left">Outward</th>
-                <th className="py-3 px-4 text-left">Balance</th>
-                <th className="py-3 px-4 text-left">Remarks</th>
+                <th className="py-3 px-6 text-left">Date</th>
+                <th className="py-3 px-6 text-left">Particulars</th>
+                <th className="py-3 px-6 text-left">Inward</th>
+                <th className="py-3 px-6 text-left">Outward</th>
               </tr>
             </thead>
             <tbody>
-              {logs.length > 0 ? (
-                logs.map((log, index) => (
-                  <tr
-                    key={index}
-                    className={`${
-                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                    } border-t border-b`}
-                  >
-                    <td className="py-4 px-4">
-                      {new Date(log.date).toLocaleString()}
-                    </td>
-                    <td className="py-4 px-4">{log.particulars}</td>
-                    <td className="py-4 px-4">{log.inward}</td>
-                    <td className="py-4 px-4">{log.outward}</td>
-                    <td className="py-4 px-4">{log.balance}</td>
-                    <td className="py-4 px-4">{log.remarks}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan="6"
-                    className="py-4 px-4 text-center text-gray-600"
-                  >
-                    No logs available.
-                  </td>
+              {logs.map((log, index) => (
+                <tr key={index}>
+                  <td className="py-4 px-6">{log.date}</td>
+                  <td className="py-4 px-6">{log.particulars}</td>
+                  <td className="py-4 px-6">{log.inward}</td>
+                  <td className="py-4 px-6">{log.outward}</td>
                 </tr>
-              )}
+              ))}
             </tbody>
           </table>
-        </div>
+        ) : (
+          <p>No logs available.</p>
+        )}
       </div>
     </div>
   );
