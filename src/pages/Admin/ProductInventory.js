@@ -73,7 +73,7 @@ const ProductInventory = () => {
   const handleProductSelection = (productId) => {
     const selectedProduct = products.find(product => product._id === productId);
     setSelectedProductId(productId);
-    setSelectedProduct(product);
+    setSelectedProduct(selectedProduct);
     fetchLogs(productId);
   };
 
