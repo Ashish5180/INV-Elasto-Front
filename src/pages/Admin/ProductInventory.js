@@ -75,6 +75,7 @@ const ProductInventory = () => {
     setSelectedProductId(productId);
     setSelectedProduct(selectedProduct);
     fetchLogs(productId);
+    console.log(selectedProduct);
   };
 
   const handleSearch = (e) => {
