@@ -603,26 +603,52 @@ const ProductInventory = () => {
             <div className="logs-section mt-12">
                 <h2 className="text-3xl font-medium text-gray-700 mb-6">Transaction Logs</h2>
                 {logs.length > 0 ? (
-                    <table className="min-w-full bg-white rounded-lg shadow-lg">
-                        <thead>
-                            <tr>
-                                <th className="py-3 px-6 text-left">Date</th>
-                                <th className="py-3 px-6 text-left">Particulars</th>
-                                <th className="py-3 px-6 text-left">Inward</th>
-                                <th className="py-3 px-6 text-left">Outward</th>
+                     <table className="min-w-full bg-white rounded-lg shadow-lg">
+                    <thead>
+                        <tr>
+                            <th className="py-3 px-6 text-left">Date</th>
+                            <th className="py-3 px-6 text-left">Particulars</th>
+                            <th className="py-3 px-6 text-left">Inward</th>
+                            <th className="py-3 px-6 text-left">Outward</th>
+                            <th className="py-3 px-6 text-left">Balance</th>
+                            <th className="py-3 px-6 text-left">Remarks</th>
+                            <th className="py-3 px-6 text-left">Shift</th>
+                            <th className="py-3 px-6 text-left">Worker</th>
+                            <th className="py-3 px-6 text-left">Batch No</th>
+                            <th className="py-3 px-6 text-left">Production</th>
+                            <th className="py-3 px-6 text-left">Rejection</th>
+                            <th className="py-3 px-6 text-left">Machine No</th>
+                            <th className="py-3 px-6 text-left">Supervisor</th>
+                            <th className="py-3 px-6 text-left">Time Start</th>
+                            <th className="py-3 px-6 text-left">Time End</th>
+                            <th className="py-3 px-6 text-left">Curing Temp</th>
+                            <th className="py-3 px-6 text-left">Rework Scrap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {logs.map((log, index) => (
+                            <tr key={index} className="border-b">
+                                <td className="py-4 px-6">{new Date(log.date).toLocaleString()}</td>
+                                <td className="py-4 px-6">{log.particulars}</td>
+                                <td className="py-4 px-6">{log.inward}</td>
+                                <td className="py-4 px-6">{log.outward}</td>
+                                <td className="py-4 px-6">{log.balance}</td>
+                                <td className="py-4 px-6">{log.remarks || "N/A"}</td>
+                                <td className="py-4 px-6">{log.shift}</td>
+                                <td className="py-4 px-6">{log.workerName}</td>
+                                <td className="py-4 px-6">{log.batchNumber}</td>
+                                <td className="py-4 px-6">{log.actualProduction}</td>
+                                <td className="py-4 px-6">{log.rejection}</td>
+                                <td className="py-4 px-6">{log.machineNo}</td>
+                                <td className="py-4 px-6">{log.supervisedBy}</td>
+                                <td className="py-4 px-6">{log.timeStart || "N/A"}</td>
+                                <td className="py-4 px-6">{log.timeEnd || "N/A"}</td>
+                                <td className="py-4 px-6">{log.curingTemp || "N/A"}</td>
+                                <td className="py-4 px-6">{log.reworkScrap}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {logs.map((log, index) => (
-                                <tr key={index}>
-                                    <td className="py-4 px-6">{log.date}</td>
-                                    <td className="py-4 px-6">{log.particulars}</td>
-                                    <td className="py-4 px-6">{log.inward}</td>
-                                    <td className="py-4 px-6">{log.outward}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                        ))}
+                    </tbody>
+                </table>
                 ) : (
                     <p>No logs available.</p>
                 )}
