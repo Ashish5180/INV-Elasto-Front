@@ -149,6 +149,7 @@ const ProductInventory = () => {
                     inward: transaction.inward,
                     outward: transaction.outward,
                     particulars: "deducted automatically.",
+                    fillWeight: formulaFillWeight
                    
                 };
 
