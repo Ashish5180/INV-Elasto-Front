@@ -23,7 +23,7 @@ const [selectedArticle, setSelectedArticle] = useState("");
 const [formulas, setFormulas] = useState([]); // New state to store formulas with names
 const sendToWhatsapp=()=>{
   const message = `New Order Details:
-Order ID: ${generateOrderID()}
+Order ID: ${generateOrderID(orderCount)}
 Customer Name: ${customerName}
 Item Name: ${itemName}
 Weight per Product: ${weightPerProduct}
