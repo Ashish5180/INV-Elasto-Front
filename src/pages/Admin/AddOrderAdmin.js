@@ -225,7 +225,7 @@ const handleArticleSelect = (selectedId) => {
   const handleSubmitOrder = async () => {
     try {
       const orderData = {
-        orderId:generateOrderID(),
+        orderId:generateOrderID(orderCount),
         customerName,
         itemName,
         weightPerProduct,
