@@ -24,7 +24,7 @@ const [selectedArticle, setSelectedArticle] = useState("");
 const [formulas, setFormulas] = useState([]); // New state to store formulas with names
 const sendToWhatsapp=()=>{
   const message = `New Order Details:
-Order ID: ${generateOrderID(orderCount)}
+Order ID: ${orderId}
 Customer Name: ${customerName}
 Item Name: ${itemName}
 Weight per Product: ${weightPerProduct}
@@ -150,20 +150,20 @@ useEffect(() => {
 
 // Generate Order ID
 
-const generateOrderID = (orderCount) => {
-  if (orderCount === undefined) {
-    console.log("orderCount is undefined");
-     const date = new Date();
-  const dateString = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
+// const generateOrderID = (orderCount) => {
+//   if (orderCount === undefined) {
+//     console.log("orderCount is undefined");
+//      const date = new Date();
+//   const dateString = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
 
-   return `OD${dateString}-01`; // You can return an error message or a fallback value here
-  }
+//    return `OD${dateString}-01`; // You can return an error message or a fallback value here
+//   }
 
-  const date = new Date();
-  const dateString = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
+//   const date = new Date();
+//   const dateString = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
 
-  return `OD${dateString}-${String(orderCount).padStart(2, "0")}`;
-};
+//   return `OD${dateString}-${String(orderCount).padStart(2, "0")}`;
+// };
 
 
 
