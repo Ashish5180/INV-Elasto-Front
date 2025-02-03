@@ -13,6 +13,7 @@ const [orderNumber, setOrderNumber] = useState(1);
 const [orderDescription, setOrderDescription] = useState("");
 const [selectedProduct, setSelectedProduct] = useState(null); // State for the selected product
 const [orderCount, setOrderCount] = useState(0);
+  const [orderId,setOrderId]=useState()
 const printRef = useRef(); // Ref for the printable section
 
 const [articles, setArticles] = useState([]);
@@ -225,7 +226,7 @@ const handleArticleSelect = (selectedId) => {
   const handleSubmitOrder = async () => {
     try {
       const orderData = {
-        orderId:generateOrderID(orderCount),
+        orderId,
         customerName,
         itemName,
         weightPerProduct,
@@ -267,7 +268,13 @@ const handleArticleSelect = (selectedId) => {
 
         <div>
           <label>Order ID:</label>
-          <p>{generateOrderID(orderCount)}</p>
+               <input
+            id="orderId"
+            type="text"
+            value={orderId}
+            onChange={(e) => setOrderId(e.target.value)}
+            placeholder="Enter order id"
+          />
         </div>
 
         <div>
