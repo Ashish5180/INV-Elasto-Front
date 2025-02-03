@@ -152,7 +152,10 @@ useEffect(() => {
 const generateOrderID = (orderCount) => {
   if (orderCount === undefined) {
     console.log("orderCount is undefined");
-    return "OD-Error";  // You can return an error message or a fallback value here
+     const date = new Date();
+  const dateString = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getFullYear()).slice(-2)}`;
+
+   return `OD${dateString}-01`; // You can return an error message or a fallback value here
   }
 
   const date = new Date();
